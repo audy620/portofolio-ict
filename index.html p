@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audy Jodes Wei - Personal Portfolio & Projects</title>
+    
+    <!-- Google Fonts: Inter Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration for custom styles -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        figma: {
+                            bg: '#0F172A',
+                            card: '#1E293B',
+                            border: '#334155',
+                            accent: '#6366F1',
+                            accentHover: '#4F46E5',
+                            pink: '#EC4899',
+                            cyan: '#06B6D4'
+                        }
+                    },
+                    boxShadow: {
+                        'figma-glow': '0 0 25px -5px rgba(99, 102, 241, 0.25)',
+                        'figma-card': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F19;
+            color: #F8FAFC;
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Gradient Animation */
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8 0%, #C084FC 50%, #F472B6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-pulse {
+            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        /* Custom Memory Game Card Styling matching screenshot */
+        .card-back-pattern {
+            background: #181832;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(129, 140, 248, 0.15) 0%, transparent 80%),
+                repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 8px, transparent 8px, transparent 16px),
+                linear-gradient(180deg, #1e1a3a 0%, #120e28 100%);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-perspective {
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 1rem;
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased text-slate-200 selection:bg-indigo-500 selection:text-white">
+
+    <!-- Sticky Glass Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <!-- Brand / Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition-transform">
+                    AJ
+                </div>
+                <div>
+                    <span class="font-bold text-base sm:text-lg tracking-tight text-white block leading-none">Audy Jodes Wei</span>
+                    <span class="text-xs text-indigo-400 font-medium">Kelas 9A • Digital Creator</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="text-slate-300 hover:text-indigo-400 transition-colors">Tentang Saya</a>
+                <a href="#projects" class="text-slate-300 hover:text-indigo-400 transition-colors">Project Hub</a>
+                <a href="#cdrama" class="text-slate-300 hover:text-indigo-400 transition-colors">C-Drama Corner</a>
+                <a href="#skills" class="text-slate-300 hover:text-indigo-400 transition-colors">Skills</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden md:flex items-center gap-3">
+                <button id="adminNavBtn" onclick="toggleAdminModal()" class="px-3 py-2 rounded-xl text-xs font-semibold glass-panel hover:bg-slate-800 text-slate-300 transition-all border border-slate-700 flex items-center gap-1.5">
+                    <i class="fa-solid fa-lock text-indigo-400" id="adminLockIcon"></i>
+                    <span id="adminNavLabel">Admin Login</span>
+                </button>
+
+                <a href="#contact" class="px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition-all hover:scale-105">
+                    <i class="fa-solid font-normal fa-paper-plane mr-2"></i>Hubungi Audy
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menuBtn" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Open Menu">
+                <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-t border-slate-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-indigo-400">
+                <i class="fa-solid fa-user text-indigo-400 w-6"></i>Tentang Saya
+            </a>
+            <a href="#projects" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-indigo-400">
+                <i class="fa-solid fa-folder-open text-indigo-400 w-6"></i>Project Hub
+            </a>
+            <a href="#cdrama" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-indigo-400">
+                <i class="fa-solid fa-film text-indigo-400 w-6"></i>C-Drama Corner
+            </a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-indigo-400">
+                <i class="fa-solid fa-code text-indigo-400 w-6"></i>Skills & Tools
+            </a>
+            <button onclick="toggleAdminModal()" class="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-indigo-400 flex items-center justify-between">
+                <span><i class="fa-solid fa-lock text-indigo-400 w-6"></i>Status Admin</span>
+                <span id="mobileAdminBadge" class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">Guest</span>
+            </button>
+            <div class="pt-2">
+                <a href="#contact" class="mobile-link block text-center w-full py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-md">
+                    Hubungi Audy
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 sm:pt-28 pb-16">
+
+        <!-- HERO SECTION -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Left Column Text -->
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-indigo-500/30 text-xs sm:text-sm font-medium text-indigo-300">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400 badge-pulse"></span>
+                        <span>Siswa Kelas 9A • Tech Enthusiast & C-Drama Fanatic</span>
+                    </div>
+
+                    <!-- Main Title -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Halo, Saya <br class="hidden sm:inline" />
+                        <span class="gradient-text">Audy Jodes Wei</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">
+                        Selamat datang di portofolio digital saya! Di usia <span class="text-indigo-300 font-semibold">14 tahun</span> ini, saya sangat antusias mengeksplorasi dunia pemrograman, desain UI/UX, dan berbagai ide proyek kreatif. Ketika sedang tidak coding, saya suka maraton <span class="text-pink-400 font-semibold">Long C-Drama</span> favorit! 🎬✨
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="openMemoryGameModal()" class="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg shadow-purple-600/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Mainkan Memory Cards!
+                        </button>
+                        <a href="#projects" class="px-6 py-3 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-rocket"></i>
+                            Eksplor Project
+                        </a>
+                        <a href="#cdrama" class="px-6 py-3 rounded-xl text-sm font-semibold glass-panel hover:bg-slate-800 text-slate-200 transition-all border border-slate-700 flex items-center gap-2">
+                            <i class="fa-solid fa-tv text-pink-400"></i>
+                            Hobi C-Drama
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column Image / Visual -->
+                <div class="lg:col-span-5 relative hidden lg:block">
+                    <!-- Base glow behind image -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 rounded-full blur-3xl transform scale-90"></div>
+                    
+                    <div class="relative w-full aspect-square max-w-md mx-auto glass-panel rounded-[2rem] border border-slate-700/50 p-2 overflow-hidden shadow-2xl">
+                        <!-- Profil Image Placeholder -->
+                        <div class="w-full h-full rounded-[1.5rem] bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden relative">
+                            <!-- Animated Shapes in Background -->
+                            <div class="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/30 rounded-full mix-blend-screen filter blur-xl animate-pulse"></div>
+                            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/30 rounded-full mix-blend-screen filter blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+                            
+                            <!-- Actual Image -->
+                            <img src="https://placehold.co/600x600/1e293b/a5b4fc?text=Audy's+Avatar" alt="Audy Jodes Wei" class="w-full h-full object-cover z-10 relative opacity-90 hover:opacity-100 transition-opacity duration-500">
+                            
+                            <!-- Floating Tech Badges -->
+                            <div class="absolute top-8 left-8 px-3 py-1.5 rounded-xl glass-panel text-xs font-bold text-white shadow-lg z-20 flex items-center gap-1.5 animate-bounce" style="animation-duration: 3s;">
+                                <i class="fa-brands fa-html5 text-orange-500 text-lg"></i> HTML & CSS
+                            </div>
+                            <div class="absolute bottom-12 right-6 px-3 py-1.5 rounded-xl glass-panel text-xs font-bold text-white shadow-lg z-20 flex items-center gap-1.5 animate-bounce" style="animation-duration: 4s; animation-delay: 0.5s;">
+                                <i class="fa-brands fa-js text-yellow-400 text-lg"></i> JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SECTION -->
+        <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 scroll-mt-20">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div class="max-w-2xl">
+                    <h2 class="text-sm font-bold text-indigo-400 tracking-wider uppercase mb-2">Project Showcase</h2>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Eksplorasi Ide & Karya 🚀</h3>
+                    <p class="text-slate-400 text-sm mt-3">Kumpulan beberapa proyek tugas sekolah, eksperimen desain UI, hingga mini game sederhana yang saya buat.</p>
+                </div>
+                
+                <!-- Admin Add Project Button -->
+                <button id="adminAddProjectBtn" onclick="openAddProjectModal()" class="hidden px-4 py-2.5 rounded-xl text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Tambah Project
+                </button>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+                <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+                    <button class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white transition-all shadow-md" data-category="all">Semua Project</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-all border border-slate-800" data-category="web">Web App</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-all border border-slate-800" data-category="uiux">UI/UX Design</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-all border border-slate-800" data-category="school">Tugas 9A</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 transition-all border border-slate-800" data-category="game">Mini Game</button>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="relative w-full sm:w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 transform -translate-y-1/2 text-slate-500 text-sm"></i>
+                    <input type="text" id="searchInput" placeholder="Cari judul atau fitur..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all">
+                </div>
+            </div>
+
+            <!-- Projects Grid Layout -->
+            <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic cards injected via JS -->
+            </div>
+            
+            <!-- Empty State Message -->
+            <div id="noResults" class="hidden text-center py-16 glass-panel rounded-2xl border border-slate-800 mt-6">
+                <i class="fa-solid fa-box-open text-4xl text-slate-600 mb-4 block"></i>
+                <h4 class="text-lg font-bold text-white mb-2">Project Tidak Ditemukan</h4>
+                <p class="text-sm text-slate-400">Silakan ubah filter kategori atau kata kunci pencarian.</p>
+            </div>
+        </section>
+
+        <!-- SKILLS & ABOUT GRID -->
+        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 scroll-mt-20 border-t border-slate-800/50">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                
+                <!-- About Me Box -->
+                <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-700/50 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+                    <h2 class="text-sm font-bold text-indigo-400 tracking-wider uppercase mb-3">Tentang Saya</h2>
+                    <h3 class="text-2xl font-bold text-white mb-4">Siswa SMP, Penjelajah Kode.</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Saya mulai belajar koding secara otodidak karena rasa penasaran dengan bagaimana website dibuat. Saat ini saya berfokus di ekosistem web modern (HTML, CSS, JavaScript).
+                    </p>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Impian saya ke depan adalah menjadi seorang Fullstack Developer atau UI/UX Designer profesional. Selain dunia IT, saya sangat terobsesi dengan cerita fantasi sejarah (Wuxia/Xianxia) dari C-Drama yang sering saya jadikan inspirasi desain.
+                    </p>
+                    <div class="flex items-center gap-4 text-sm font-semibold text-slate-200">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-2xl font-bold text-indigo-400">14</span>
+                            <span class="text-xs text-slate-500 uppercase">Tahun</span>
+                        </div>
+                        <div class="w-px h-10 bg-slate-700"></div>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-2xl font-bold text-pink-400">10+</span>
+                            <span class="text-xs text-slate-500 uppercase">Proyek Kecil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills & Tools Box -->
+                <div id="skills" class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-700/50 scroll-mt-20">
+                    <h2 class="text-sm font-bold text-indigo-400 tracking-wider uppercase mb-3">Skills & Tools</h2>
+                    <h3 class="text-2xl font-bold text-white mb-6">Teknologi yang Dipelajari</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Skill Group 1 -->
+                        <div>
+                            <h4 class="text-xs font-semibold text-slate-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-code text-indigo-400"></i> Front-End Development</h4>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 hover:border-orange-500/50 hover:text-orange-400 transition-colors"><i class="fa-brands fa-html5 mr-1.5"></i>HTML5</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 hover:border-blue-500/50 hover:text-blue-400 transition-colors"><i class="fa-brands fa-css3-alt mr-1.5"></i>CSS3 / Grid</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 hover:border-yellow-400/50 hover:text-yellow-400 transition-colors"><i class="fa-brands fa-js mr-1.5"></i>JavaScript ES6</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 hover:border-cyan-400/50 hover:text-cyan-400 transition-colors"><i class="fa-solid fa-wind mr-1.5"></i>Tailwind CSS</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Skill Group 2 -->
+                        <div>
+                            <h4 class="text-xs font-semibold text-slate-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-pen-nib text-pink-400"></i> Design & UI/UX</h4>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 hover:border-purple-500/50 hover:text-purple-400 transition-colors"><i class="fa-brands fa-figma mr-1.5"></i>Figma</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 hover:border-indigo-400/50 transition-colors">Wireframing</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 hover:border-indigo-400/50 transition-colors">Responsive Design</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill Group 3 -->
+                        <div>
+                            <h4 class="text-xs font-semibold text-slate-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-toolbox text-emerald-400"></i> Tools Lainnya</h4>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200"><i class="fa-brands fa-git-alt mr-1.5 text-orange-600"></i>Git / GitHub</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">VS Code</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">Canva</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- C-DRAMA CORNER SECTION -->
+        <section id="cdrama" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 scroll-mt-20">
+            <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-slate-700/50 bg-gradient-to-br from-[#1E293B]/80 to-[#0F172A]/90 relative overflow-hidden">
+                <!-- Background decorative shapes -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500/5 rounded-full blur-3xl -mt-20 -mr-20"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -mb-20 -ml-20"></div>
+
+                <div class="relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
+                    <!-- Left: Description -->
+                    <div class="lg:w-1/3">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 mb-4 border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.15)]">
+                            <i class="fa-solid fa-tv text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">C-Drama <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Corner</span></h2>
+                        <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                            Zona santai! Di luar urusan koding dan tugas sekolah, ini adalah tempat saya mencatat drama Tiongkok panjang yang sukses bikin saya maraton semalaman. Rekomendasi pribadi saya nih! 🍿✨
+                        </p>
+                        
+                        <div class="bg-slate-900/60 rounded-2xl p-4 border border-slate-800 flex items-center gap-4 mb-6">
+                            <div class="text-center">
+                                <span id="totalDramaCount" class="block text-xl font-bold text-white">40+ Ep</span>
+                                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Rata-rata/Judul</span>
+                            </div>
+                            <div class="w-px h-8 bg-slate-700"></div>
+                            <div class="text-center">
+                                <span class="block text-xl font-bold text-pink-400">Xianxia</span>
+                                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Genre Favorit</span>
+                            </div>
+                        </div>
+
+                        <!-- Admin Add Drama Button -->
+                        <button id="adminAddDramaBtn" onclick="openAddDramaModal()" class="hidden w-full py-2.5 rounded-xl text-sm font-semibold bg-pink-600 hover:bg-pink-500 text-white shadow-lg transition-all flex items-center justify-center gap-2 mb-4">
+                            <i class="fa-solid fa-plus"></i> Tambah Rekomendasi
+                        </button>
+                    </div>
+
+                    <!-- Right: Scrolling Cards Grid -->
+                    <div class="lg:w-2/3">
+                        <div id="cdramaGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                            <!-- Dynamic C-Drama Cards injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & FOOTER SECTION -->
+        <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-20">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                
+                <!-- Contact Form Box -->
+                <div class="md:col-span-7 glass-panel rounded-3xl p-6 sm:p-8 border border-slate-700/50">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-sm font-bold text-indigo-400 tracking-wider uppercase mb-1">Hubungi Audy</h2>
+                            <h3 class="text-2xl font-bold text-white">Tinggalkan Pesan 📬</h3>
+                        </div>
+                        
+                        <!-- Admin Inbox Button (Badge Unread) -->
+                        <button id="adminInboxBtn" onclick="openMessagesModal()" class="hidden relative p-2.5 rounded-xl bg-slate-800 text-indigo-400 hover:bg-slate-700 hover:text-indigo-300 transition-colors border border-slate-700">
+                            <i class="fa-solid fa-inbox text-lg"></i>
+                            <span id="unreadMsgBadge" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center border-2 border-slate-900 shadow-sm">0</span>
+                        </button>
+                    </div>
+
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Kamu</label>
+                                <input type="text" required placeholder="Contoh: Budi Teman Sekelas" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Email / Instagram</label>
+                                <input type="text" required placeholder="@username atau email" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Isi Pesan</label>
+                            <textarea rows="4" required placeholder="Halo Audy, web portofolionya keren! Main game bareng yuk..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 group">
+                            Kirim Pesan Sekarang <i class="fa-solid fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                        </button>
+
+                        <!-- Success Message Toast (Hidden by default) -->
+                        <div id="formSuccessToast" class="hidden mt-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium flex items-center gap-2 animate-pulse">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            Pesan berhasil dikirim! Audy akan membacanya nanti.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Footer Info Info -->
+                <div class="md:col-span-5 flex flex-col justify-center h-full space-y-6">
+                    <div class="glass-panel p-6 rounded-3xl border border-slate-800 text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-bold text-2xl shadow-lg mx-auto mb-4">
+                            AJ
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1">Audy Jodes Wei</h4>
+                        <p class="text-xs text-slate-400 mb-4">Portofolio Pelajar & Digital Creator</p>
+                        
+                        <div class="flex items-center justify-center gap-3">
+                            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-indigo-600 flex items-center justify-center transition-all"><i class="fa-brands fa-github text-sm"></i></a>
+                            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-pink-600 flex items-center justify-center transition-all"><i class="fa-brands fa-instagram text-sm"></i></a>
+                            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-blue-600 flex items-center justify-center transition-all"><i class="fa-brands fa-discord text-sm"></i></a>
+                        </div>
+                    </div>
+                    <p class="text-center text-xs text-slate-500">
+                        &copy; 2026 Audy Jodes Wei.<br/>Dibuat dengan <i class="fa-solid fa-heart text-red-500/80 mx-0.5"></i> dan rasa ingin tahu.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL MEMORY CARDS GAME (MATCHING SCREENSHOT) -->
+    <div id="memoryGameModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div class="relative w-full max-w-2xl glass-panel rounded-3xl border border-indigo-500/30 p-4 sm:p-8 my-auto shadow-2xl bg-[#0e0c1f]/95">
+            <!-- Close Modal Button -->
+            <button onclick="closeMemoryGameModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800/80 text-slate-400 hover:text-white flex items-center justify-center text-base transition-all hover:bg-slate-700 z-20">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Game Header matching Screenshot -->
+            <div class="text-center space-y-2 mb-6">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 tracking-tight flex items-center justify-center gap-2">
+                    <span>✨</span> Memory Cards <span>✨</span>
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                    Temukan semua pasangan emotikon yang cocok! Kumpulan kartu akan diacak dengan tema baru setiap permainan.
+                </p>
+            </div>
+
+            <!-- Stats Bar matching Screenshot -->
+            <div class="flex items-center justify-center gap-3 sm:gap-4 mb-6">
+                <!-- Move Count Pill -->
+                <div class="px-4 py-2 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs sm:text-sm font-semibold text-slate-200 flex items-center gap-1.5 shadow-inner">
+                    <span>Langkah:</span>
+                    <span id="gameMoves" class="text-purple-400 font-bold text-base">0</span>
+                </div>
+
+                <!-- Best Score Pill -->
+                <div class="px-4 py-2 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs sm:text-sm font-semibold text-slate-200 flex items-center gap-1.5 shadow-inner">
+                    <span>🏆 Rekor:</span>
+                    <span id="gameRecord" class="text-amber-400 font-bold text-base">-</span>
+                </div>
+
+                <!-- Mute / Unmute Audio Button -->
+                <button id="audioToggleBtn" onclick="toggleGameAudio()" class="w-10 h-10 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 text-slate-300 hover:text-white flex items-center justify-center text-sm transition-all shadow-inner" title="Toggle Suara">
+                    <i id="audioIcon" class="fa-solid fa-volume-high text-indigo-400"></i>
+                </button>
+
+                <!-- Restart Button -->
+                <button onclick="resetMemoryGame()" class="w-10 h-10 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-pink-500/50 text-slate-300 hover:text-white flex items-center justify-center text-sm transition-all shadow-inner" title="Acak ulang kartu">
+                    <i class="fa-solid fa-rotate-right text-pink-400"></i>
+                </button>
+            </div>
+
+            <!-- Cards Grid matching Screenshot (4x3 layout) -->
+            <div id="memoryCardsGrid" class="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-lg mx-auto min-h-[280px] sm:min-h-[360px]">
+                <!-- Dynamic memory cards will be generated here -->
+            </div>
+
+            <!-- Win Toast Overlay -->
+            <div id="gameWinOverlay" class="hidden absolute inset-0 rounded-3xl bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-30 space-y-4">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-white text-3xl shadow-lg animate-bounce">
+                    🎉
+                </div>
+                <div>
+                    <h3 class="text-2xl font-extrabold text-white">Selamat! Kamu Menang!</h3>
+                    <p class="text-xs text-slate-300 mt-1" id="winStatsText">Kamu menyelesaikan permainan dalam 0 langkah.</p>
+                </div>
+                <button onclick="resetMemoryGame()" class="px-6 py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg transition-all transform hover:scale-105">
+                    Main Lagi 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="newGameModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div class="relative w-full max-w-md glass-panel rounded-3xl border border-cyan-500/30 p-6 my-auto shadow-2xl bg-[#0e0c1f]/95 text-center">
+            <!-- Close Modal Button -->
+            <button onclick="closeNewGameModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800/80 text-slate-400 hover:text-white flex items-center justify-center text-base transition-all hover:bg-slate-700 z-20">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Game Header -->
+            <div class="text-center space-y-2 mb-6">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 tracking-tight flex items-center justify-center gap-2">
+                    🎮 Tic-Tac-Toe Mini 🎮
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                    Game interaktif. Giliran: <span id="ttcTurn" class="text-cyan-400 font-bold text-lg">❌</span>
+                </p>
+            </div>
+
+            <!-- Game Board -->
+            <div id="ttcBoard" class="grid grid-cols-3 gap-2 sm:gap-3 max-w-[260px] mx-auto mb-6">
+                <!-- Generated by JS -->
+            </div>
+            
+            <div id="ttcResult" class="hidden text-xl font-bold text-white mb-4 animate-bounce">
+                🎉 Menang! 🎉
+            </div>
+
+            <button onclick="resetNewGame()" class="px-6 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-lg transition-all transform hover:scale-105">
+                Main Lagi 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 1: ADMIN LOGIN DIALOG -->
+    <div id="adminLoginModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel max-w-md w-full rounded-3xl border border-slate-700 p-6 relative">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white">Login Mode Admin</h3>
+                <p class="text-xs text-slate-400 mt-1">Masukkan Passcode Admin untuk mengelola project, drama, dan pesan.</p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Passcode Admin</label>
+                    <div class="relative">
+                        <input type="password" id="passcodeInput" required placeholder="Masukkan passcode..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <p id="loginErrorMsg" class="hidden text-[11px] text-red-400 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i> Passcode salah! Silakan coba lagi.</p>
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-lg">
+                        Masuk Sebagai Admin
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: ADD / EDIT PROJECT DIALOG -->
+    <div id="projectFormModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel max-w-lg w-full rounded-3xl border border-slate-700 p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectFormModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 id="projectFormTitle" class="text-lg font-bold text-white mb-4">Tambah Project Baru</h3>
+
+            <form onsubmit="handleSaveProject(event)" class="space-y-3.5">
+                <input type="hidden" id="editProjectId">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Judul Project</label>
+                    <input type="text" id="pTitleInput" required placeholder="Contoh: Aplikasi Pengingat Tugas" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Kategori Filter</label>
+                        <select id="pCategoryInput" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <option value="web">Web App</option>
+                            <option value="uiux">UI/UX Design</option>
+                            <option value="school">Tugas 9A</option>
+                            <option value="game">Mini Game</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Badge Tag</label>
+                        <input type="text" id="pBadgeInput" placeholder="Contoh: Featured / Personal" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">URL Gambar Preview</label>
+                    <input type="text" id="pImageInput" placeholder="https://placehold.co/600x400/..." class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Deskripsi Singkat</label>
+                    <textarea id="pDescInput" rows="3" required placeholder="Jelaskan mengenai project ini..." class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Fitur Utama (Pisahkan dengan koma)</label>
+                    <input type="text" id="pFeaturesInput" placeholder="Fitur 1, Fitur 2, Fitur 3" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Teknologi (Pisahkan dengan koma)</label>
+                    <input type="text" id="pTechInput" placeholder="HTML, Tailwind, JS" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div class="pt-2 flex gap-2">
+                    <button type="button" onclick="closeProjectFormModal()" class="w-1/2 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300">Batal</button>
+                    <button type="submit" class="w-1/2 py-2.5 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg">Simpan Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ADD DRAMA DIALOG -->
+    <div id="dramaFormModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel max-w-md w-full rounded-3xl border border-slate-700 p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeDramaFormModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-lg font-bold text-white mb-4">Tambah Rekomendasi C-Drama</h3>
+
+            <form onsubmit="handleSaveDrama(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Judul Drama</label>
+                    <input type="text" id="dTitleInput" required placeholder="Contoh: The Untamed (陈情令)" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Jumlah Ep & Genre</label>
+                        <input type="text" id="dSubInput" required placeholder="50 Ep • Xianxia / Action" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Rating (1 - 10)</label>
+                        <input type="text" id="dRatingInput" required placeholder="★ 9.7 / 10" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">URL Gambar Cover</label>
+                    <input type="text" id="dImageInput" placeholder="https://placehold.co/500x300/..." class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Ulasan / Catatan Singkat</label>
+                    <textarea id="dDescInput" rows="3" required placeholder="Alasan drama ini bagus..." class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+                <div class="pt-2 flex gap-2">
+                    <button type="button" onclick="closeDramaFormModal()" class="w-1/2 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300">Batal</button>
+                    <button type="submit" class="w-1/2 py-2.5 rounded-xl text-xs font-semibold bg-pink-600 hover:bg-pink-500 text-white shadow-lg">Tambah Drama</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 4: INBOX MESSAGES DIALOG -->
+    <div id="messagesModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel max-w-2xl w-full rounded-3xl border border-slate-700 p-6 relative max-h-[85vh] flex flex-col">
+            <button onclick="closeMessagesModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-inbox text-indigo-400 text-lg"></i>
+                    <h3 class="text-lg font-bold text-white">Inbox Pesan Masuk</h3>
+                </div>
+                <button onclick="clearAllMessages()" class="text-xs text-red-400 hover:text-red-300 font-medium">
+                    <i class="fa-solid fa-trash mr-1"></i>Hapus Semua
+                </button>
+            </div>
+
+            <div id="messagesList" class="flex-grow overflow-y-auto space-y-3 pr-1">
+                <!-- Dynamic messages list rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DIALOG DETAIL PROJECT -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
+        <div class="glass-panel max-w-xl w-full rounded-3xl border border-slate-700 p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modalContent">
+                <!-- Modal Dynamic Payload Header -->
+                <div class="flex items-center gap-2 mb-2">
+                    <span id="modalBadge" class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Category</span>
+                </div>
+                <h3 id="modalTitle" class="text-xl font-bold text-white mb-2">Project Title</h3>
+                <img id="modalImage" src="" alt="Project Preview" class="w-full h-48 object-cover rounded-xl mb-4 border border-slate-800">
+                <p id="modalDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">Detailed project explanation goes here...</p>
+
+                <div class="border-t border-slate-800 pt-4">
+                    <h4 class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">Fitur Utama</h4>
+                    <ul id="modalFeatures" class="text-xs text-slate-400 space-y-1.5 list-disc list-inside mb-6">
+                        <!-- Dynamic list -->
+                    </ul>
+
+                    <div class="flex gap-3">
+                        <button onclick="closeModal()" class="w-full py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-all">
+                            Tutup Detail
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ADMIN PASSCODE & STATE MANAGEMENT */
+        const ADMIN_PASSCODE = "admin123";
+        let isAdmin = false;
+
+        /* INITIAL PROJECT DATA */
+        const initialProjects = [
+            {
+                id: "project_memory_game",
+                title: "✨ Memory Cards Game ✨",
+                category: "game",
+                badge: "Playable Game",
+                image: "Screenshot 2026-10-06 125557_3.png",
+                desc: "Game asah ingatan interaktif bertema emotikon seru. Dilengkapi dengan kartu 3D flip animasi, generator acak, penghitung langkah, rekor skor, dan efek suara sintetis!",
+                features: [
+                    "Desain kartu custom dengan pola garis & sparkle star ✦ sesuai sampel",
+                    "Flip kartu 3D interaktif yang mulus & responsif",
+                    "Penghitung langkah (moves) & rekor terbaik disimpan di browser",
+                    "Dukungan efek suara sintetis Web Audio API"
+                ],
+                tech: ["JavaScript Game", "CSS 3D Flip", "Web Audio API"],
+                isGame: true
+            },
+            {
+                id: "project1",
+                title: "C-Drama Tracker Dashboard",
+                category: "web",
+                badge: "Featured",
+                image: "https://placehold.co/600x400/1e1e2e/818cf8?text=C-Drama+Tracker+App",
+                desc: "Dashboard interaktif yang dibuat Audy khusus untuk mencatat progress menonton drama Tiongkok favorit. Dilengkapi dengan filter status (Sedang Ditonton, Tamat, Wishlist), catatan episode, dan rating personal.",
+                features: [
+                    "Fitur Tambah/Edit Drama dengan penyimpanan LocalStorage",
+                    "Statistik total episode & jam tayang drama yang sudah ditonton",
+                    "Filter berdasarkan genre (Wuxia, Xianxia, Modern, Historical)",
+                    "Antarmuka Figma-style clean dark theme"
+                ],
+                tech: ["JavaScript", "Tailwind", "LocalStorage"]
+            },
+            {
+                id: "project2",
+                title: "Portal Kelas 9A Interactive",
+                category: "school",
+                badge: "Tugas 9A",
+                image: "https://placehold.co/600x400/1e1e2e/c084fc?text=Portal+Kelas+9A",
+                desc: "Website internal kelas 9A yang dirancang untuk mempermudah koordinasi teman sekelas dalam mengecek jadwal pelajaran harian, pembagian tugas kelompok, dan kalender kegiatan sekolah.",
+                features: [
+                    "Jadwal harian dinamis sesuai hari berjalan",
+                    "Pengumuman penting ketua murid dan wali kelas",
+                    "Kumpulan tautan materi pelajaran & file presentasi",
+                    "Desain responsif ramah smartphone"
+                ],
+                tech: ["HTML5", "CSS Grid", "JS Filter"]
+            },
+            {
+                id: "project3",
+                title: "Figma Clean UI Design Concept",
+                category: "uiux",
+                badge: "UI Concept",
+                image: "https://placehold.co/600x400/1e1e2e/f472b6?text=Figma+Clean+UI+Kit",
+                desc: "Eksplorasi desain UI ala Figma dengan struktur komponen yang rapi, penggunaan variabel warna yang konsisten, dan desain bertema Figma Slate Dark.",
+                features: [
+                    "Sistem token warna & typography Inter font",
+                    "Komponen bento grid & card layout terstruktur",
+                    "Desain mobile-first dengan kontras tinggi",
+                    "Interactive prototype antar halaman"
+                ],
+                tech: ["Figma", "Design System", "Auto Layout"]
+            },
+            {
+                id: "project4",
+                title: "C-Drama Trivia Kuis Game",
+                category: "game",
+                badge: "Mini Game",
+                image: "https://placehold.co/600x400/1e1e2e/38bdf8?text=Wuxia+Quiz+Game",
+                desc: "Mini game trivia berbasis JavaScript murni berisi seputar pengetahuan umum drama Wuxia dan Xianxia populer. Pengguna bisa menguji seberapa jauh pengetahuan C-Drama mereka!",
+                features: [
+                    "20+ Pertanyaan seru pilihan ganda",
+                    "Timer hitung mundur per pertanyaan",
+                    "Perhitungan skor akhir & badge gelar penggemar",
+                    "Sound effect sintetis menggunakan Web Audio API"
+                ],
+                tech: ["JavaScript ES6", "DOM Manipulation"]
+            },
+            {
+                id: "project5",
+                title: "Kalkulator Rata-Rata Nilai SMP",
+                category: "web",
+                badge: "Sekolah",
+                image: "https://placehold.co/600x400/1e1e2e/a7f3d0?text=Kalkulator+Nilai+SMP",
+                desc: "Aplikasi praktis buatan Audy untuk membantu siswa kelas 9 menghitung estimasi rata-rata nilai rapor semester serta target nilai minimal untuk ujian akhir sekolah.",
+                features: [
+                    "Input nilai per mata pelajaran secara fleksibel",
+                    "Perhitungan otomatis bobot tugas, UTS, dan UAS",
+                    "Prediksi kelulusan & grafik statistik visual sederhana",
+                    "Fitur cetak/simpan ringkasan nilai"
+                ],
+                tech: ["HTML", "Math JS", "Tailwind"]
+            },
+            {
+                id: "project6",
+                title: "Interactive Web Slide Sejarah",
+                category: "school",
+                badge: "Tugas 9A",
+                image: "https://placehold.co/600x400/1e1e2e/fde047?text=Presentasi+Interactive",
+                desc: "Situs web presentasi interaktif pengganti slide PowerPoint biasa untuk tugas IPS kelas 9A. Dilengkapi dengan linimasa sejarah dan animasi perpindahan halaman yang halus.",
+                features: [
+                    "Navigasi slide keyboard (Panah Kiri/Kanan & Touch Swipe)",
+                    "Linimasa peristiwa sejarah interaktif",
+                    "Kuis singkat di akhir slide presentasi",
+                    "Visualasi gambar & peta sejarah"
+                ],
+                tech: ["HTML Slide", "CSS Animation"]
+            }
+        ];
+
+        /* INITIAL DRAMA DATA */
+        const initialDramas = [
+            {
+                id: "drama1",
+                title: "Joy of Life (庆余年)",
+                sub: "46 Episode • Kolosal / Taktik / Mystery",
+                rating: "★ 9.8 / 10",
+                image: "https://placehold.co/500x300/2a1b3d/f472b6?text=Joy+of+Life",
+                desc: "Alur cerita jenius dengan teka-teki politik kerajaan yang seru banget disimak sampai episode terakhir!"
+            },
+            {
+                id: "drama2",
+                title: "Love Between Fairy and Devil",
+                sub: "36 Episode • Xianxia / Fantasy",
+                rating: "★ 9.6 / 10",
+                image: "https://placehold.co/500x300/2a1b3d/c084fc?text=Love+Between+Fairy+and+Devil",
+                desc: "Efek CGI visual yang luar biasa keren, cerita fantasi dunia peri dan iblis yang penuh plot twist."
+            },
+            {
+                id: "drama3",
+                title: "Story of Kunning Palace",
+                sub: "38 Episode • Reinkarnasi / Romance",
+                rating: "★ 9.5 / 10",
+                image: "https://placehold.co/500x300/2a1b3d/818cf8?text=Story+of+Kunning+Palace",
+                desc: "Kisah kesempatan kedua untuk mengubah takdir kehidupan dengan strategi cerdas dan menegangkan."
+            }
+        ];
+
+        // Persistent data variables loaded from localStorage
+        let projectsList = JSON.parse(localStorage.getItem('audy_projects')) || initialProjects;
+        
+        // Memastikan gambar Memory Game menggunakan screenshot terbaru (Screenshot 2026-10-06 125557_3.png) 
+        // agar otomatis terupdate meski pengguna sudah punya data lama di cache browser
+        const memoryGameIndex = projectsList.findIndex(p => p.id === "project_memory_game");
+        if (memoryGameIndex !== -1) {
+            projectsList[memoryGameIndex].image = "Screenshot 2026-10-06 125557_3.png";
+            localStorage.setItem('audy_projects', JSON.stringify(projectsList));
+        }
+
+        if (!projectsList.find(p => p.id === "project_new_gemini_game")) {
+            projectsList.unshift({
+                id: "project_new_gemini_game",
+                title: "🎮 Game Baru (Dari Gemini) 🎮",
+                category: "game",
+                badge: "Playable Game",
+                // Menggunakan placeholder yang terlihat jelas untuk icon game
+                // (Anda dapat mengedit ini nanti lewat form Admin)
+                image: "https://placehold.co/600x400/181236/38bdf8?text=Icon+Game+Terlampir",
+                desc: "Game interaktif Tic-Tac-Toe yang bisa langsung dipencet dan dimainkan di dalam portofolio!",
+                features: ["Bisa langsung dimainkan", "Desain interaktif responsif", "Sistem giliran 2 pemain"],
+                tech: ["JavaScript", "HTML5", "CSS Grid"],
+                isGame: true,
+                playFunction: "openNewGameModal()"
+            });
+            localStorage.setItem('audy_projects', JSON.stringify(projectsList));
+        }
+
+        let dramasList = JSON.parse(localStorage.getItem('audy_dramas')) || initialDramas;
+        let messagesList = JSON.parse(localStorage.getItem('audy_messages')) || [];
+
+        /* MOBILE NAVIGATION TOGGLE */
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.className = 'fa-solid fa-xmark text-xl';
+            }
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            });
+        });
+
+        /* RENDER PROJECTS SYSTEM */
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '';
+
+            let visibleCount = 0;
+
+            projectsList.forEach(item => {
+                const matchesCategory = (currentCategory === 'all' || item.category === currentCategory);
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                     item.desc.toLowerCase().includes(searchQuery.toLowerCase());
+
+                if (matchesCategory && matchesSearch) {
+                    visibleCount++;
+                    const card = document.createElement('div');
+                    card.className = "project-card glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-figma-card flex flex-col relative group";
+
+                    const adminControlsHtml = isAdmin ? `
+                        <div class="absolute top-3 left-3 z-10 flex gap-1.5">
+                            <button onclick="openEditProjectModal('${item.id}')" class="p-1.5 rounded-lg bg-amber-600/90 text-white text-xs hover:bg-amber-500 shadow-md">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button onclick="deleteProject('${item.id}')" class="p-1.5 rounded-lg bg-red-600/90 text-white text-xs hover:bg-red-500 shadow-md">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    ` : '';
+
+                    const techTagsHtml = item.tech ? item.tech.map(t => `<span class="text-[10px] px-2 py-0.5 rounded bg-slate-900 text-slate-400">${t}</span>`).join('') : '';
+
+                    const actionBtnHtml = item.isGame ? `
+                        <button onclick="${item.playFunction || 'openMemoryGameModal()'}" class="w-full py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg shadow-purple-600/30 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i> Mainkan Game Sekarang!
+                        </button>
+                    ` : `
+                        <button onclick="openModal('${item.id}')" class="w-full py-2 rounded-xl text-xs font-semibold glass-panel hover:bg-indigo-600 text-slate-200 hover:text-white transition-all border border-slate-700 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-circle-info"></i> Detail Project
+                        </button>
+                    `;
+
+                    card.innerHTML = `
+                        ${adminControlsHtml}
+                        <div class="relative h-48 bg-slate-900 overflow-hidden">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/a5b4fc?text=Audy+Project'">
+                            ${item.badge ? `<span class="absolute top-3 right-3 px-2.5 py-1 rounded-md text-[10px] font-bold bg-indigo-600/90 text-white backdrop-blur-md">${item.badge}</span>` : ''}
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">${item.category.toUpperCase()}</span>
+                                </div>
+                                <h3 class="text-base font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">${item.title}</h3>
+                                <p class="text-xs text-slate-400 line-clamp-2 mb-4">${item.desc}</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    ${techTagsHtml}
+                                </div>
+                                ${actionBtnHtml}
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        /* RENDER C-DRAMAS SYSTEM */
+        function renderCDramas() {
+            const grid = document.getElementById('cdramaGrid');
+            grid.innerHTML = '';
+
+            dramasList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900/90 rounded-2xl p-4 border border-slate-800 hover:border-pink-500/40 transition-all group relative";
+
+                const deleteBtnHtml = isAdmin ? `
+                    <button onclick="deleteDrama('${item.id}')" class="absolute top-6 left-6 z-10 p-1.5 rounded-lg bg-red-600/90 text-white text-xs hover:bg-red-500 shadow-md">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                ` : '';
+
+                card.innerHTML = `
+                    ${deleteBtnHtml}
+                    <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/500x300/2a1b3d/f472b6?text=C-Drama'">
+                        <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] text-yellow-400 font-bold">
+                            ${item.rating}
+                        </span>
+                    </div>
+                    <h3 class="text-sm font-bold text-white group-hover:text-pink-400 transition-colors">${item.title}</h3>
+                    <p class="text-[11px] text-indigo-300 font-medium my-1">${item.sub}</p>
+                    <p class="text-xs text-slate-400 leading-relaxed">${item.desc}</p>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('totalDramaCount').textContent = `${dramasList.length * 10}+ Episode / ${dramasList.length} Judul`;
+        }
+
+        /* PROJECT FILTER EVENT LISTENERS */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white', 'active');
+                    b.classList.add('bg-slate-900', 'text-slate-400');
+                });
+                btn.classList.remove('bg-slate-900', 'text-slate-400');
+                btn.classList.add('bg-indigo-600', 'text-white', 'active');
+
+                currentCategory = btn.getAttribute('data-category');
+                renderProjects();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderProjects();
+        });
+
+        /* ADMIN AUTHENTICATION FUNCTIONS */
+        function toggleAdminModal() {
+            if (isAdmin) {
+                // Logout Admin
+                isAdmin = false;
+                updateAdminUI();
+            } else {
+                document.getElementById('adminLoginModal').classList.remove('hidden');
+                document.getElementById('passcodeInput').focus();
+            }
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+            document.getElementById('loginErrorMsg').classList.add('hidden');
+            document.getElementById('passcodeInput').value = '';
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const passcode = document.getElementById('passcodeInput').value.trim();
+
+            if (passcode === ADMIN_PASSCODE) {
+                isAdmin = true;
+                closeAdminModal();
+                updateAdminUI();
+            } else {
+                document.getElementById('loginErrorMsg').classList.remove('hidden');
+            }
+        }
+
+        function updateAdminUI() {
+            const label = document.getElementById('adminNavLabel');
+            const icon = document.getElementById('adminLockIcon');
+            const btn = document.getElementById('adminNavBtn');
+            const mobileBadge = document.getElementById('mobileAdminBadge');
+
+            const addProjectBtn = document.getElementById('adminAddProjectBtn');
+            const addDramaBtn = document.getElementById('adminAddDramaBtn');
+            const inboxBtn = document.getElementById('adminInboxBtn');
+
+            if (isAdmin) {
+                label.textContent = "Admin Active (Exit)";
+                icon.className = "fa-solid fa-unlock text-emerald-400";
+                btn.classList.add("border-emerald-500/50", "bg-emerald-500/10");
+                mobileBadge.textContent = "Admin Active";
+                mobileBadge.className = "text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+
+                addProjectBtn.classList.remove('hidden');
+                addDramaBtn.classList.remove('hidden');
+                inboxBtn.classList.remove('hidden');
+            } else {
+                label.textContent = "Admin Login";
+                icon.className = "fa-solid fa-lock text-indigo-400";
+                btn.classList.remove("border-emerald-500/50", "bg-emerald-500/10");
+                mobileBadge.textContent = "Guest";
+                mobileBadge.className = "text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700";
+
+                addProjectBtn.classList.add('hidden');
+                addDramaBtn.classList.add('hidden');
+                inboxBtn.classList.add('hidden');
+            }
+
+            renderProjects();
+            renderCDramas();
+            updateUnreadMessagesCount();
+        }
+
+        /* PROJECT MANAGEMENT (ADD/EDIT/DELETE) */
+        function openAddProjectModal() {
+            document.getElementById('projectFormTitle').textContent = "Tambah Project Baru";
+            document.getElementById('editProjectId').value = "";
+            document.getElementById('pTitleInput').value = "";
+            document.getElementById('pCategoryInput').value = "web";
+            document.getElementById('pBadgeInput').value = "";
+            document.getElementById('pImageInput').value = "";
+            document.getElementById('pDescInput').value = "";
+            document.getElementById('pFeaturesInput').value = "";
+            document.getElementById('pTechInput').value = "";
+
+            document.getElementById('projectFormModal').classList.remove('hidden');
+        }
+
+        function openEditProjectModal(id) {
+            const item = projectsList.find(p => p.id === id);
+            if (!item) return;
+
+            document.getElementById('projectFormTitle').textContent = "Edit Project";
+            document.getElementById('editProjectId').value = item.id;
+            document.getElementById('pTitleInput').value = item.title;
+            document.getElementById('pCategoryInput').value = item.category;
+            document.getElementById('pBadgeInput').value = item.badge || "";
+            document.getElementById('pImageInput').value = item.image;
+            document.getElementById('pDescInput').value = item.desc;
+            document.getElementById('pFeaturesInput').value = item.features ? item.features.join(", ") : "";
+            document.getElementById('pTechInput').value = item.tech ? item.tech.join(", ") : "";
+
+            document.getElementById('projectFormModal').classList.remove('hidden');
+        }
+
+        function closeProjectFormModal() {
+            document.getElementById('projectFormModal').classList.add('hidden');
+        }
+
+        function handleSaveProject(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editProjectId').value;
+            const title = document.getElementById('pTitleInput').value.trim();
+            const category = document.getElementById('pCategoryInput').value;
+            const badge = document.getElementById('pBadgeInput').value.trim();
+            const image = document.getElementById('pImageInput').value.trim() || 'https://placehold.co/600x400/1e293b/a5b4fc?text=Audy+Project';
+            const desc = document.getElementById('pDescInput').value.trim();
+            const features = document.getElementById('pFeaturesInput').value.split(',').map(s => s.trim()).filter(Boolean);
+            const tech = document.getElementById('pTechInput').value.split(',').map(s => s.trim()).filter(Boolean);
+
+            if (editId) {
+                // Update existing project
+                const index = projectsList.findIndex(p => p.id === editId);
+                if (index !== -1) {
+                    projectsList[index] = { id: editId, title, category, badge, image, desc, features, tech };
+                }
+            } else {
+                // Add new project
+                const newProject = {
+                    id: "proj_" + Date.now(),
+                    title, category, badge, image, desc, features, tech
+                };
+                projectsList.unshift(newProject);
+            }
+
+            localStorage.setItem('audy_projects', JSON.stringify(projectsList));
+            closeProjectFormModal();
+            renderProjects();
+        }
+
+        function deleteProject(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus project ini?")) {
+                projectsList = projectsList.filter(p => p.id !== id);
+                localStorage.setItem('audy_projects', JSON.stringify(projectsList));
+                renderProjects();
+            }
+        }
+
+        /* DRAMA MANAGEMENT (ADD/DELETE) */
+        function openAddDramaModal() {
+            document.getElementById('dTitleInput').value = "";
+            document.getElementById('dSubInput').value = "";
+            document.getElementById('dRatingInput').value = "★ 9.5 / 10";
+            document.getElementById('dImageInput').value = "";
+            document.getElementById('dDescInput').value = "";
+
+            document.getElementById('dramaFormModal').classList.remove('hidden');
+        }
+
+        function closeDramaFormModal() {
+            document.getElementById('dramaFormModal').classList.add('hidden');
+        }
+
+        function handleSaveDrama(e) {
+            e.preventDefault();
+            const title = document.getElementById('dTitleInput').value.trim();
+            const sub = document.getElementById('dSubInput').value.trim();
+            const rating = document.getElementById('dRatingInput').value.trim();
+            const image = document.getElementById('dImageInput').value.trim() || 'https://placehold.co/500x300/2a1b3d/f472b6?text=C-Drama';
+            const desc = document.getElementById('dDescInput').value.trim();
+
+            const newDrama = { id: "drama_" + Date.now(), title, sub, rating, image, desc };
+            dramasList.unshift(newDrama);
+
+            localStorage.setItem('audy_dramas', JSON.stringify(dramasList));
+            closeDramaFormModal();
+            renderCDramas();
+        }
+
+        function deleteDrama(id) {
+            if (confirm("Hapus rekomendasi drama ini?")) {
+                dramasList dramasList = dramasList.filter(d => d.id !== id);
+                localStorage.setItem('audy_dramas', JSON.stringify(dramasList));
+                renderCDramas();
+            }
+        }
+
+        /* MESSAGES & CONTACT FORM HANDLING */
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const inputs = e.target.querySelectorAll('input, textarea');
+            const name = inputs[0].value.trim();
+            const contact = inputs[1].value.trim();
+            const message = inputs[2].value.trim();
+
+            const newMessage = {
+                id: "msg_" + Date.now(),
+                name, contact, message,
+                date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+            };
+
+            messagesList.unshift(newMessage);
+            localStorage.setItem('audy_messages', JSON.stringify(messagesList));
+
+            const toast = document.getElementById('formSuccessToast');
+            toast.classList.remove('hidden');
+            e.target.reset();
+
+            updateUnreadMessagesCount();
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+
+        function openMessagesModal() {
+            renderMessages();
+            document.getElementById('messagesModal').classList.remove('hidden');
+        }
+
+        function closeMessagesModal() {
+            document.getElementById('messagesModal').classList.add('hidden');
+        }
+
+        function renderMessages() {
+            const list = document.getElementById('messagesList');
+            list.innerHTML = '';
+
+            if (messagesList.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-8 text-slate-500 text-xs">
+                        <i class="fa-solid fa-inbox text-2xl mb-2 block"></i> Belum ada pesan masuk.
+                    </div>
+                `;
+                return;
+            }
+
+            messagesList.forEach(msg => {
+                const item = document.createElement('div');
+                item.className = "p-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-xs text-slate-300 relative group";
+                item.innerHTML = `
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="font-bold text-white text-sm">${msg.name}</span>
+                        <span class="text-[10px] text-slate-500">${msg.date}</span>
+                    </div>
+                    <div class="text-indigo-400 font-medium text-[11px] mb-2"><i class="fa-solid fa-at mr-1"></i>${msg.contact}</div>
+                    <p class="text-slate-300 leading-relaxed bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">${msg.message}</p>
+                    <button onclick="deleteSingleMessage('${msg.id}')" class="mt-2 text-[10px] text-red-400 hover:underline">
+                        <i class="fa-solid fa-trash mr-1"></i>Hapus Pesan Ini
+                    </button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function deleteSingleMessage(id) {
+            messagesList = messagesList.filter(m => m.id !== id);
+            localStorage.setItem('audy_messages', JSON.stringify(messagesList));
+            renderMessages();
+            updateUnreadMessagesCount();
+        }
+
+        function clearAllMessages() {
+            if (confirm("Hapus semua pesan di inbox?")) {
+                messagesList = [];
+                localStorage.setItem('audy_messages', JSON.stringify(messagesList));
+                renderMessages();
+                updateUnreadMessagesCount();
+            }
+        }
+
+        function updateUnreadMessagesCount() {
+            const badge = document.getElementById('unreadMsgBadge');
+            badge.textContent = messagesList.length;
+        }
+
+        /* PROJECT DETAIL MODAL DATA HANDLER */
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBadge = document.getElementById('modalBadge');
+        const modalImage = document.getElementById('modalImage');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalFeatures = document.getElementById('modalFeatures');
+
+        function openModal(projectId) {
+            const data = projectsList.find(p => p.id === projectId);
+            if (!data) return;
+
+            modalTitle.textContent = data.title;
+            modalBadge.textContent = data.category.toUpperCase();
+            modalImage.src = data.image;
+            modalDesc.textContent = data.desc;
+
+            modalFeatures.innerHTML = '';
+            if (data.features && data.features.length > 0) {
+                data.features.forEach(feat => {
+                    const li = document.createElement('li');
+                    li.textContent = feat;
+                    modalFeatures.appendChild(li);
+                });
+            } else {
+                modalFeatures.innerHTML = '<li class="text-slate-500 italic">Tidak ada detail fitur tambahan.</li>';
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        /* INITIALIZE ON LOAD */
+        window.onload = function() {
+            renderProjects();
+            renderCDramas();
+            updateUnreadMessagesCount();
+        };
+    </script>
+</body>
+</html>
+        /* MEMORY GAME LOGIC & AUDIO SYSTEM */
+        const EMOJI_SETS = ['🚀', '🔮', '🎭', '👑', '⚔️', '🐉']; // 6 pairs = 12 cards (4x3 grid)
+        let gameCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let gameMoves = 0;
+        let gameLocked = false;
+        let gameAudioEnabled = true;
+
+        // Web Audio Synthesizer for retro sounds
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!gameAudioEnabled) return;
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'flip') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.exponentialRampToValueAtTime(500, now + 0.08);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'match') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'win') {
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.type = 'sine';
+                        o.frequency.value = freq;
+                        g.gain.setValueAtTime(0.2, now + idx * 0.1);
+                        g.gain.linearRampToValueAtTime(0.01, now + idx * 0.1 + 0.2);
+                        o.start(now + idx * 0.1);
+                        o.stop(now + idx * 0.1 + 0.2);
+                    });
+                }
+            } catch (e) {
+                console.log('Audio Context Error:', e);
+            }
+        }
+
+        function toggleGameAudio() {
+            gameAudioEnabled = !gameAudioEnabled;
+            const icon = document.getElementById('audioIcon');
+            if (gameAudioEnabled) {
+                icon.className = "fa-solid fa-volume-high text-indigo-400";
+            } else {
+                icon.className = "fa-solid fa-volume-xmark text-slate-500";
+            }
+        }
+
+        function openMemoryGameModal() {
+            document.getElementById('memoryGameModal').classList.remove('hidden');
+            loadGameRecord();
+            if (gameCards.length === 0) {
+                resetMemoryGame();
+            }
+        }
+
+        function closeMemoryGameModal() {
+            document.getElementById('memoryGameModal').classList.add('hidden');
+        }
+
+        function loadGameRecord() {
+            const savedRecord = localStorage.getItem('audy_memory_record');
+            document.getElementById('gameRecord').textContent = savedRecord ? savedRecord : '-';
+        }
+
+        function resetMemoryGame() {
+            document.getElementById('gameWinOverlay').classList.add('hidden');
+            gameMoves = 0;
+            matchedPairs = 0;
+            flippedCards = [];
+            gameLocked = false;
+            document.getElementById('gameMoves').textContent = '0';
+
+            // Duplicate emojis to form pairs & shuffle
+            const deck = [...EMOJI_SETS, ...EMOJI_SETS];
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+
+            gameCards = deck.map((emoji, index) => ({
+                id: index,
+                emoji: emoji,
+                isFlipped: false,
+                isMatched: false
+            }));
+
+            renderMemoryCards();
+        }
+
+        function renderMemoryCards() {
+            const container = document.getElementById('memoryCardsGrid');
+            container.innerHTML = '';
+
+            gameCards.forEach((card, index) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = "card-perspective h-20 sm:h-28 w-full";
+                
+                cardEl.innerHTML = `
+                    <div id="cardInner_${index}" onclick="handleCardClick(${index})" class="card-inner cursor-pointer ${card.isFlipped ? 'flipped' : ''}">
+                        <!-- FRONT FACE (REVEALED EMOJI) -->
+                        <div class="card-front flex items-center justify-center text-2xl sm:text-4xl border border-indigo-400/40 rounded-2xl shadow-lg">
+                            ${card.emoji}
+                        </div>
+
+                        <!-- BACK FACE (PATTERNTED WITH SPARKLE STAR ✦) -->
+                        <div class="card-back card-back-pattern rounded-2xl flex items-center justify-center border border-indigo-500/30 hover:border-purple-400/60 transition-all hover:scale-[1.02]">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-200/90 drop-shadow-[0_0_8px_rgba(165,180,252,0.8)]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(cardEl);
+            });
+        }
+
+        function handleCardClick(index) {
+            const card = gameCards[index];
+            if (gameLocked || card.isFlipped || card.isMatched) return;
+
+            // Flip card
+            card.isFlipped = true;
+            flippedCards.push(index);
+            
+            const cardInner = document.getElementById(`cardInner_${index}`);
+            cardInner.classList.add('flipped');
+            playSound('flip');
+
+            if (flippedCards.length === 2) {
+                gameMoves++;
+                document.getElementById('gameMoves').textContent = gameMoves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            gameLocked = true;
+            const [idx1, idx2] = flippedCards;
+            const card1 = gameCards[idx1];
+            const card2 = gameCards[idx2];
+
+            if (card1.emoji === card2.emoji) {
+                // Match found
+                card1.isMatched = true;
+                card2.isMatched = true;
+                matchedPairs++;
+                flippedCards = [];
+                gameLocked = false;
+                playSound('match');
+
+                if (matchedPairs === EMOJI_SETS.length) {
+                    // Win game!
+                    setTimeout(() => {
+                        handleGameWin();
+                    }, 500);
+                }
+            } else {
+                // Not match -> flip back after delay
+                setTimeout(() => {
+                    card1.isFlipped = false;
+                    card2.isFlipped = false;
+                    document.getElementById(`cardInner_${idx1}`).classList.remove('flipped');
+                    document.getElementById(`cardInner_${idx2}`).classList.remove('flipped');
+                    flippedCards = [];
+                    gameLocked = false;
+                }, 900);
+            }
+        }
+
+        function handleGameWin() {
+            playSound('win');
+            const currentRecord = localStorage.getItem('audy_memory_record');
+            if (!currentRecord || gameMoves < parseInt(currentRecord)) {
+                localStorage.setItem('audy_memory_record', gameMoves);
+                loadGameRecord();
+            }
+
+            document.getElementById('winStatsText').textContent = \`Kamu berhasil mencocokkan semua kartu dalam \${gameMoves} langkah!\`;
+            document.getElementById('gameWinOverlay').classList.remove('hidden');
+        }
+
+        let ttcBoard = ['', '', '', '', '', '', '', '', ''];
+        let ttcCurrentPlayer = '❌';
+        let ttcGameActive = false;
+
+        function openNewGameModal() {
+            document.getElementById('newGameModal').classList.remove('hidden');
+            if (!ttcGameActive && ttcBoard.every(cell => cell === '')) {
+                resetNewGame();
+            }
+        }
+
+        function closeNewGameModal() {
+            document.getElementById('newGameModal').classList.add('hidden');
+        }
+
+        function renderTtcBoard() {
+            const boardEl = document.getElementById('ttcBoard');
+            boardEl.innerHTML = '';
+            ttcBoard.forEach((cell, index) => {
+                const btn = document.createElement('button');
+                btn.className = "w-20 h-20 sm:w-24 sm:h-24 bg-slate-800/80 hover:bg-slate-700 border border-slate-600 rounded-2xl text-4xl flex items-center justify-center transition-all focus:outline-none shadow-md";
+                if(cell === '❌') btn.classList.add('text-pink-500');
+                if(cell === '⭕') btn.classList.add('text-cyan-400');
+                btn.textContent = cell;
+                btn.onclick = () => handleTtcClick(index);
+                boardEl.appendChild(btn);
+            });
+        }
+
+        function handleTtcClick(index) {
+            if (ttcBoard[index] !== '' || !ttcGameActive) return;
+            
+            ttcBoard[index] = ttcCurrentPlayer;
+            playSound('flip');
+            renderTtcBoard();
+            checkTtcWin();
+        }
+
+        function checkTtcWin() {
+            const winConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Baris
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Kolom
+                [0, 4, 8], [2, 4, 6]             // Diagonal
+            ];
+
+            let roundWon = false;
+            for (let i = 0; i < winConditions.length; i++) {
+                const [a, b, c] = winConditions[i];
+                if (ttcBoard[a] && ttcBoard[a] === ttcBoard[b] && ttcBoard[a] === ttcBoard[c]) {
+                    roundWon = true;
+                    break;
+                }
+            }
+
+            const resultEl = document.getElementById('ttcResult');
+            const turnEl = document.getElementById('ttcTurn');
+
+            if (roundWon) {
+                ttcGameActive = false;
+                resultEl.textContent = \`🎉 \${ttcCurrentPlayer} Menang! 🎉\`;
+                resultEl.classList.remove('hidden');
+                playSound('win');
+                return;
+            }
+
+            if (!ttcBoard.includes('')) {
+                ttcGameActive = false;
+                resultEl.textContent = "🤝 Permainan Seri!";
+                resultEl.classList.remove('hidden');
+                return;
+            }
+
+            ttcCurrentPlayer = ttcCurrentPlayer === '❌' ? '⭕' : '❌';
+            turnEl.textContent = ttcCurrentPlayer;
+        }
+
+        function resetNewGame() {
+            ttcBoard = ['', '', '', '', '', '', '', '', ''];
+            ttcCurrentPlayer = '❌';
+            ttcGameActive = true;
+            document.getElementById('ttcResult').classList.add('hidden');
+            document.getElementById('ttcTurn').textContent = ttcCurrentPlayer;
+            renderTtcBoard();
+        }
+
+        /* INITIALIZE ON LOAD */
+        window.onload = function() {
+            renderProjects();
+            renderCDramas();
+            updateUnreadMessagesCount();
+        };
+    </script>
+</body>
+</html>
